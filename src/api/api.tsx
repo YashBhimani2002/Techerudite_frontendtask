@@ -1,8 +1,8 @@
 import axios from "axios";
-const url = import.meta.env.VITE_API_URL;
+const url = "http://localhost:3000";
 
 
-exports.insertUser =async (data:{rolId:number,firstName:string,lastName:string,email:string,password:string})=>{
+export const insertUser =async (data:{rolId:number,firstName:string,lastName:string,email:string,password:string})=>{
     try {
         const result = await axios.post(`${url}/insertUser`, data);
         return result;
@@ -11,7 +11,7 @@ exports.insertUser =async (data:{rolId:number,firstName:string,lastName:string,e
     }
 }
 
-exports.loginUser =async (data:{email:string,password:string})=>{
+export const loginUser =async (data:{email:string,password:string})=>{
   try {
     const result = await axios.post(`${url}/loginUser`, data);
     return result;
