@@ -6,14 +6,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { loginUser } from "../../api/api.tsx";
 import { Link } from "react-router-dom";
 const Login = () => {
+
+  // handle form data
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  // handle form error message data
   const [error, setError] = useState({
     emailError: "",
     passwordError: "",
   });
+  //submit function for the pass the data in to login api and also check field validation.
   const handleInputChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -39,7 +43,7 @@ const Login = () => {
       setUserData({ ...userData, [name]: value });
     }
   };
-
+  //handle password validation
   const PasswordCheck = (e) => {
     let newErrors = { ...error };
     let value = e.target.value;
@@ -55,10 +59,11 @@ const Login = () => {
     setError(newErrors);
     setUserData({ ...userData, password: e.target.value });
   };
+  //handle input field validation and use to verify login user
   const handleSignIn = async () => {
     let dataCompleted = true;
 
-    Object.entries(userData).map(([field, value]) => {
+    Object.entries(userData).forEach(([field, value]) => {
       if (value === "") {
         setError((prev) => ({
           ...prev,
@@ -67,7 +72,7 @@ const Login = () => {
         dataCompleted = false;
       }
     });
-    Object.entries(error).map(([field, value]) => {
+    Object.entries(error).forEach(([field, value]) => {
       if (value !== "") {
         dataCompleted = false;
       }

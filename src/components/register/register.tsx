@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
+  // handle form data
   const [userData, setUserData] = useState({
     role: "1",
     firstName: "",
@@ -13,6 +14,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  // handle form error message data
   const [error, setError] = useState({
     firstNameError: "",
     lastNameError: "",
@@ -20,6 +22,7 @@ const Register = () => {
     passwordError: "",
     confirmPasswordError: "",
   });
+  //handle password validation
   const PasswordCheck = (e) => {
     let newErrors = { ...error };
     let value = e.target.value;
@@ -35,6 +38,7 @@ const Register = () => {
     setError(newErrors);
     setUserData({ ...userData, password: e.target.value });
   };
+  //handle input field validation and use to store input field data
   const handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -100,10 +104,11 @@ const Register = () => {
       }));
     }
   };
+  //submit function for the pass the data in to register api.
   const handleSignUp = async () => {
     const { firstName, lastName, email, password } = userData;
     let dataCompleted = true;
-    Object.entries(userData).map(([field, value]) => {
+    Object.entries(userData).forEach(([field, value]) => {
       if (value === "") {
         setError((prev) => ({
           ...prev,
@@ -112,7 +117,7 @@ const Register = () => {
         dataCompleted = false;
       }
     });
-    Object.entries(error).map(([field, value]) => {
+    Object.entries(error).forEach(([field, value]) => {
       if (value !== "") {
         dataCompleted = false;
       }
@@ -155,7 +160,6 @@ const Register = () => {
             Create an account
           </h2>
         </div>
-
         <div className="mt-4 flex justify-between gap-2 sm:gap-8 custome-height">
           <label
             htmlFor="flexRadioDefault1"
