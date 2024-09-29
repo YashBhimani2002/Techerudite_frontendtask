@@ -1,7 +1,7 @@
 import axios from "axios";
 const url = "http://localhost:3000";
 
-
+// register api
 export const insertUser =async (data:{rolId:number,firstName:string,lastName:string,email:string,password:string})=>{
     try {
         const result = await axios.post(`${url}/insertUser`, data);
@@ -11,6 +11,7 @@ export const insertUser =async (data:{rolId:number,firstName:string,lastName:str
     }
 }
 
+//login api
 export const loginUser =async (data:{email:string,password:string})=>{
   try {
     const result = await axios.post(`${url}/loginUser`, data);
